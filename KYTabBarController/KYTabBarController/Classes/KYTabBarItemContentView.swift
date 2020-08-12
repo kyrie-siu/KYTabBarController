@@ -54,7 +54,7 @@ public class KYTabBarItemContentView: UIView {
         contentStackView.alignment = .center
         contentStackView.distribution = .fillProportionally
         contentStackView.isUserInteractionEnabled = true
-        contentStackView.spacing = 10.0
+        contentStackView.spacing = 6.0
         
         return contentStackView
     }()
@@ -142,7 +142,7 @@ public class KYTabBarItemContentView: UIView {
     
     private func configureSubviews() {
         self.heightAnchor.constraint(equalToConstant: self.tabHeight).isActive = true
-        self.assetView.heightAnchor.constraint(equalToConstant: self.tabHeight*0.8).isActive = true
+        self.assetView.heightAnchor.constraint(equalToConstant: self.tabHeight*0.5).isActive = true
 
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
 
@@ -151,12 +151,23 @@ public class KYTabBarItemContentView: UIView {
         
         self.addSubview(self.contentStackView)
         
-        self.contentStackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 16).isActive = true
+        self.contentStackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 12).isActive = true
         self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.contentStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -16).isActive = true
+        self.contentStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -12).isActive = true
         self.contentStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
+        if #available(iOS 13.0, *) {
+            let imageView = UIImageView(image: .checkmark)
+            
+            self.assetView.addSubview(imageView)
+            
+            imageView.leadingAnchor.constraint(equalTo: self.assetView.leadingAnchor).isActive = true
+            imageView.topAnchor.constraint(equalTo: self.assetView.topAnchor).isActive = true
+            imageView.trailingAnchor.constraint(equalTo: self.assetView.trailingAnchor).isActive = true
+            imageView.bottomAnchor.constraint(equalTo: self.assetView.bottomAnchor).isActive = true
+        }
+
         self.contentStackView.addArrangedSubview(self.assetView)
         self.contentStackView.addArrangedSubview(self.titleLabel)
         

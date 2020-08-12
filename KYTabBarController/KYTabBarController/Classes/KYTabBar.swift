@@ -30,7 +30,7 @@ open class KYTabBar: UITabBar {
     
     //MARK: - Appearance
     
-    open var tabBarHeight: CGFloat = 48.0
+    open var tabBarItemHeight: CGFloat = 48.0
     open override var tintColor: UIColor! {
         didSet {
             for item in self.items! {
@@ -55,7 +55,7 @@ open class KYTabBar: UITabBar {
     }
     
     ///Corner Radius of bar items
-    ///(tabBarHeight/2) by default
+    ///(tabBarItemHeight/2) by default
     var cornerRadius: CGFloat! = CGFloat.greatestFiniteMagnitude {
         didSet {
             for item in self.items! {
@@ -79,8 +79,8 @@ open class KYTabBar: UITabBar {
      */
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var sizeThatFits = super.sizeThatFits(size)
-        if tabBarHeight > 0.0 {
-            sizeThatFits.height = tabBarHeight
+        if tabBarItemHeight > 0.0 {
+            sizeThatFits.height = tabBarItemHeight
         }
         return sizeThatFits
     }
@@ -141,6 +141,10 @@ open class KYTabBar: UITabBar {
     
     private func initialView() {
         self.isTranslucent = false
+        
+        //Remove all native tabBarButton
+        self.subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }.forEach { $0.removeFromSuperview() }
+        
         self.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         //For dark mode

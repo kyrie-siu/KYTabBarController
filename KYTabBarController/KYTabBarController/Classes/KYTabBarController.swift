@@ -65,7 +65,7 @@ open class KYTabBarController: UITabBarController {
         if let tabBar = self.tabBar as? KYTabBar {
             var size = tabBar.bounds.size
             size.height = self.tabBarHeight + self.view.safeAreaInsets.bottom
-            tabBar.tabBarHeight = size.height
+            tabBar.tabBarItemHeight = size.height
         }
     }
     
