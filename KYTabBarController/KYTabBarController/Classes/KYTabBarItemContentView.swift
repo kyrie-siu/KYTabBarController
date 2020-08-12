@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class KYTabBarItemContentView: UIView {
+open class KYTabBarItemContentView: UIView {
     
     //MARK: - Property
     //MARK: Appearance
@@ -128,7 +128,7 @@ public class KYTabBarItemContentView: UIView {
         self.configureSubviews()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.configureSubviews()
     }
@@ -140,9 +140,10 @@ public class KYTabBarItemContentView: UIView {
         self.layer.cornerRadius = min(self.cornerRadius, self.tabHeight/2)
      }
     
-    private func configureSubviews() {
+    open func configureSubviews() {
         self.heightAnchor.constraint(equalToConstant: self.tabHeight).isActive = true
-        self.assetView.heightAnchor.constraint(equalToConstant: self.tabHeight*0.5).isActive = true
+        self.assetView.heightAnchor.constraint(equalToConstant: self.tabHeight*0.7).isActive = true
+        self.assetView.widthAnchor.constraint(equalToConstant: self.tabHeight*0.7).isActive = true
 
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
 
@@ -156,17 +157,6 @@ public class KYTabBarItemContentView: UIView {
         self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.contentStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -12).isActive = true
         self.contentStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        if #available(iOS 13.0, *) {
-            let imageView = UIImageView(image: .checkmark)
-            
-            self.assetView.addSubview(imageView)
-            
-            imageView.leadingAnchor.constraint(equalTo: self.assetView.leadingAnchor).isActive = true
-            imageView.topAnchor.constraint(equalTo: self.assetView.topAnchor).isActive = true
-            imageView.trailingAnchor.constraint(equalTo: self.assetView.trailingAnchor).isActive = true
-            imageView.bottomAnchor.constraint(equalTo: self.assetView.bottomAnchor).isActive = true
-        }
 
         self.contentStackView.addArrangedSubview(self.assetView)
         self.contentStackView.addArrangedSubview(self.titleLabel)
@@ -211,7 +201,7 @@ public class KYTabBarItemContentView: UIView {
         
     }
 
-    internal func fold() {
+    open func fold() {
         self.selected = false
         UIView.animate(withDuration: animationDuration, delay:  animationDuration/3, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
             self.reloadView()
@@ -224,7 +214,7 @@ public class KYTabBarItemContentView: UIView {
         }
     }
 
-    internal func unfold() {
+    open func unfold() {
         self.selected = true
         if self.assetView.subviews.count > 0 {
             UIView.animate(withDuration: animationDuration/2, delay: animationDuration/2.5, animations: {

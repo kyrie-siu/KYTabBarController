@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,10 @@
 		289010F424E15AF200AED969 /* KYTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289010F124E15AF200AED969 /* KYTabBarItem.swift */; };
 		289010F524E15AF200AED969 /* KYTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289010F224E15AF200AED969 /* KYTabBarController.swift */; };
 		289010F624E15AF200AED969 /* KYTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289010F324E15AF200AED969 /* KYTabBar.swift */; };
-		28E0E73524E26EB00032E455 /* menubarRoutePage.json in Resources */ = {isa = PBXBuildFile; fileRef = 28E0E73424E26EB00032E455 /* menubarRoutePage.json */; };
+		28CE4A7F24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE4A7E24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift */; };
+		28D1FCB324E3E59D00C01116 /* KYTabBarItemLottieContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1FCB224E3E59D00C01116 /* KYTabBarItemLottieContentView.swift */; };
+		28D1FCCB24E3E87E00C01116 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 28D1FCCA24E3E87E00C01116 /* Lottie */; };
+		28D1FCD224E3EF3100C01116 /* menubarRoutePage.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D1FCD124E3EF3100C01116 /* menubarRoutePage.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,7 +60,9 @@
 		289010F124E15AF200AED969 /* KYTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYTabBarItem.swift; sourceTree = "<group>"; };
 		289010F224E15AF200AED969 /* KYTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYTabBarController.swift; sourceTree = "<group>"; };
 		289010F324E15AF200AED969 /* KYTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYTabBar.swift; sourceTree = "<group>"; };
-		28E0E73424E26EB00032E455 /* menubarRoutePage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menubarRoutePage.json; sourceTree = "<group>"; };
+		28CE4A7E24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYTabBarItemImageContentView.swift; sourceTree = "<group>"; };
+		28D1FCB224E3E59D00C01116 /* KYTabBarItemLottieContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYTabBarItemLottieContentView.swift; sourceTree = "<group>"; };
+		28D1FCD124E3EF3100C01116 /* menubarRoutePage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menubarRoutePage.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				289010EC24E159A200AED969 /* KYTabBarController.framework in Frameworks */,
+				28D1FCCB24E3E87E00C01116 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +107,7 @@
 		2890108924E1545700AED969 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				28CE4A8024E3DFB4006224D4 /* Templates */,
 				289010F224E15AF200AED969 /* KYTabBarController.swift */,
 				289010F324E15AF200AED969 /* KYTabBar.swift */,
 				289010F124E15AF200AED969 /* KYTabBarItem.swift */,
@@ -123,11 +130,12 @@
 		289010D524E1588000AED969 /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				28E0E73324E26E950032E455 /* Lottie */,
+				28D1FCCC24E3EC5400C01116 /* Lottie */,
 				289010D624E1588000AED969 /* AppDelegate.swift */,
 				289010D824E1588000AED969 /* SceneDelegate.swift */,
 				289010DA24E1588000AED969 /* ViewController.swift */,
 				289010E824E158B400AED969 /* SampleViewController.swift */,
+				28D1FCB224E3E59D00C01116 /* KYTabBarItemLottieContentView.swift */,
 				289010DC24E1588000AED969 /* Main.storyboard */,
 				289010DF24E1588100AED969 /* Assets.xcassets */,
 				289010E124E1588100AED969 /* LaunchScreen.storyboard */,
@@ -136,10 +144,18 @@
 			path = ExampleApp;
 			sourceTree = "<group>";
 		};
-		28E0E73324E26E950032E455 /* Lottie */ = {
+		28CE4A8024E3DFB4006224D4 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				28E0E73424E26EB00032E455 /* menubarRoutePage.json */,
+				28CE4A7E24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		28D1FCCC24E3EC5400C01116 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				28D1FCD124E3EF3100C01116 /* menubarRoutePage.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -197,6 +213,9 @@
 			dependencies = (
 			);
 			name = ExampleApp;
+			packageProductDependencies = (
+				28D1FCCA24E3E87E00C01116 /* Lottie */,
+			);
 			productName = ExampleApp;
 			productReference = 289010D424E1588000AED969 /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +248,9 @@
 				Base,
 			);
 			mainGroup = 283BBAE424DF32970080BF5A;
+			packageReferences = (
+				28D1FCC924E3E87E00C01116 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 283BBAEE24DF32970080BF5A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -251,10 +273,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28D1FCD224E3EF3100C01116 /* menubarRoutePage.json in Resources */,
 				289010E324E1588100AED969 /* LaunchScreen.storyboard in Resources */,
 				289010E024E1588100AED969 /* Assets.xcassets in Resources */,
 				289010DE24E1588000AED969 /* Main.storyboard in Resources */,
-				28E0E73524E26EB00032E455 /* menubarRoutePage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				280DAA8E24E2BA4900B192E9 /* KYTabBarItemContainer.swift in Sources */,
+				28CE4A7F24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift in Sources */,
 				289010F624E15AF200AED969 /* KYTabBar.swift in Sources */,
 				289010F424E15AF200AED969 /* KYTabBarItem.swift in Sources */,
 				280DAA9024E2BA6200B192E9 /* KYTabBarItemContentView.swift in Sources */,
@@ -277,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28D1FCB324E3E59D00C01116 /* KYTabBarItemLottieContentView.swift in Sources */,
 				289010DB24E1588000AED969 /* ViewController.swift in Sources */,
 				289010D724E1588000AED969 /* AppDelegate.swift in Sources */,
 				289010E924E158B400AED969 /* SampleViewController.swift in Sources */,
@@ -497,8 +521,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3X6GKD3BEJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ExampleApp/Lottie",
+					"$(PROJECT_DIR)/ExampleApp/Framework",
+				);
 				INFOPLIST_FILE = ExampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,8 +546,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3X6GKD3BEJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ExampleApp/Lottie",
+					"$(PROJECT_DIR)/ExampleApp/Framework",
+				);
 				INFOPLIST_FILE = ExampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -561,6 +595,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		28D1FCC924E3E87E00C01116 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28D1FCCA24E3E87E00C01116 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28D1FCC924E3E87E00C01116 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 283BBAE524DF32970080BF5A /* Project object */;
 }

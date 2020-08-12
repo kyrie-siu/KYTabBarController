@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class KYTabBarItem: UITabBarItem {
+open class KYTabBarItem: UITabBarItem {
     
     open var contentView: KYTabBarItemContentView?
     
