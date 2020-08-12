@@ -125,12 +125,10 @@ open class KYTabBarItemContentView: UIView {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.isUserInteractionEnabled = false
-        self.configureSubviews()
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.configureSubviews()
     }
     
     //MARK: - View Configuration
@@ -167,12 +165,16 @@ open class KYTabBarItemContentView: UIView {
     // MARK: - INTERNAL METHODS
     
     internal func reloadView() {
+        if self.contentStackView.arrangedSubviews.count == 0 {
+            self.configureSubviews()
+        }
+        
         self.tintColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
 
         if self.selectedBackgroundColor != nil{
             self.backgroundColor = self.selected ? self.selectedBackgroundColor : .clear
         } else {
-            self.backgroundColor = self.selected ? self.unselectedTintColor : .clear
+            self.backgroundColor = self.selected ? self.selectedTintColor?.withAlphaComponent(0.2) : .clear
         }
         
         if self.selected {

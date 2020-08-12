@@ -15,9 +15,9 @@ public class KYTabBarItemImageContentView: KYTabBarItemContentView {
     open var selectedImage: UIImage!
     
     public init(image: UIImage!, selectedImage: UIImage!) {
+        super.init(frame: CGRect.zero)
         self.image = image
         self.selectedImage = image
-        super.init(frame: CGRect.zero)
     }
     
     required init?(coder aDecoder: NSCoder) {

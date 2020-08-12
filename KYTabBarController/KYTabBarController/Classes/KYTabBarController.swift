@@ -69,32 +69,28 @@ open class KYTabBarController: UITabBarController {
         }
     }
     
-    var itemCornerRadius: CGFloat?
     public func setItemCornerRadius(_ radius: CGFloat) {
         if let tabBar = self.tabBar as? KYTabBar {
-            self.itemCornerRadius = radius
             tabBar.cornerRadius = radius
         }
     }
     
-    var unselectedItemTintColor: UIColor = .black
     public func setUnselectedItemTintColor(_ color: UIColor) {
         if let tabBar = self.tabBar as? KYTabBar {
-            self.unselectedItemTintColor = color
             tabBar.unselectedItemTintColor = color
         }
     }
 
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        updateTabBarSize()
+        self.updateTabBarSize()
     }
 
     open override func viewSafeAreaInsetsDidChange() {
         if #available(iOS 11.0, *) {
             super.viewSafeAreaInsetsDidChange()
         }
-        updateTabBarSize()
+        self.updateTabBarSize()
     }
     
     @objc func deviceOrientationDidChanged() {
@@ -109,9 +105,9 @@ open class KYTabBarController: UITabBarController {
             return
         }
         if let controller = viewControllers?[idx] {
-            shouldSelectOnTabBar = false
-            selectedIndex = idx
-            delegate?.tabBarController?(self, didSelect: controller)
+            self.shouldSelectOnTabBar = false
+            self.selectedIndex = idx
+            self.delegate?.tabBarController?(self, didSelect: controller)
         }
     }
 

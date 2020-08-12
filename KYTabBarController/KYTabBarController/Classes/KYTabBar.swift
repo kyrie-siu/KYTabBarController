@@ -37,7 +37,6 @@ open class KYTabBar: UITabBar {
                 if let kyItem = item as? KYTabBarItem {
                     if kyItem.selectedTintColor == nil {
                         kyItem.selectedTintColor = tintColor
-                        kyItem.unselectedTintColor = tintColor.withAlphaComponent(0.2)
                     }
                 }
             }
@@ -48,7 +47,7 @@ open class KYTabBar: UITabBar {
         didSet {
             for item in self.items! {
                 if let kyItem = item as? KYTabBarItem {
-                    kyItem.contentView?.tintColor = unselectedItemTintColor
+                    kyItem.unselectedTintColor = unselectedItemTintColor
                 }
             }
         }
@@ -88,21 +87,11 @@ open class KYTabBar: UITabBar {
     open override func setItems(_ items: [UITabBarItem]?, animated: Bool) {
         super.setItems(items, animated: animated)
         self.reloadView()
+        
+        if self.selectedItem == nil, self.items!.count > 0 {
+            self.select(itemAt: 0, animated: true)
+        }
     }
-    
-//    open override var selectedItem: UITabBarItem? {
-//        willSet {
-//            guard let newValue = newValue else {
-//                buttons.forEach { $0.setSelected(false) }
-//                return
-//            }
-//            guard let index = items?.firstIndex(of: newValue),
-//                index != NSNotFound else {
-//                    return
-//            }
-//            select(itemAt: index, animated: false)
-//        }
-//    }
     
     var view: UIView = {
         let view = UIView()
@@ -133,6 +122,9 @@ open class KYTabBar: UITabBar {
     }()
     
     func removeAllContainers() {
+        //Remove all native tabBarButton
+        self.subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }.forEach { $0.removeFromSuperview() }
+        
         for container in self.containers {
             container.removeFromSuperview()
         }
@@ -142,10 +134,8 @@ open class KYTabBar: UITabBar {
     private func initialView() {
         self.isTranslucent = false
         
-        //Remove all native tabBarButton
-        self.subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }.forEach { $0.removeFromSuperview() }
-        
         self.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        self.unselectedItemTintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         //For dark mode
         if #available(iOS 13, *) {
@@ -245,7 +235,7 @@ open class KYTabBar: UITabBar {
         select(itemAt: container.tag - 1000, animated: true)
     }
     
-    @objc func select(itemAt index: Int, animated: Bool = false) {
+    func select(itemAt index: Int, animated: Bool = false) {
         guard index < self.items!.count else {
             print("out of bounds!")
             return
@@ -257,7 +247,7 @@ open class KYTabBar: UITabBar {
         
         for (idx, item) in self.items!.enumerated() {
             if let kyItem = item as? KYTabBarItem {
-                kyItem.selected = (idx == index)
+                kyItem.setSelected(selected: (idx == index), animated: animated)
             }
         }
         self.reload(false)

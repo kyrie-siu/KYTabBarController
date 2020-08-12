@@ -24,23 +24,24 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         let eventsVC = SampleViewController()
-        let evemtstabBarItem = KYTabBarItem.init(KYTabBarItemLottieContentView(animationName: "menubarRoutePage", placeholderImage: #imageLiteral(resourceName: "menu")), title: "Events", tag: 0)
-//        evemtstabBarItem.tintColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+//        let evemtstabBarItem = KYTabBarItem.init(KYTabBarItemImageContentView(image: #imageLiteral(resourceName: "menu"), selectedImage: #imageLiteral(resourceName: "menu")), title: "Events", tag: 0)
+        let evemtstabBarItem = KYTabBarItem.init(KYTabBarItemLottieContentView(animationName: "menubarRoutePage", placeholderImage:#imageLiteral(resourceName: "menu")), title: "Events", tag: 0)
+        evemtstabBarItem.selectedTintColor = #colorLiteral(red: 0.9843137255, green: 0.7254901961, blue: 0.1803921569, alpha: 1)
         eventsVC.tabBarItem = evemtstabBarItem
         let searchVC = SampleViewController()
         let searchtabBarItem = KYTabBarItem.init(KYTabBarItemImageContentView(image: #imageLiteral(resourceName: "clock"), selectedImage: #imageLiteral(resourceName: "clock")), title: "Search", tag: 0)
-//        searchtabBarItem.tintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        searchtabBarItem.selectedTintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         searchVC.tabBarItem = searchtabBarItem
         let activityVC = SampleViewController()
         let activityBarItem = KYTabBarItem.init(KYTabBarItemImageContentView(image: #imageLiteral(resourceName: "dashboard"), selectedImage: #imageLiteral(resourceName: "dashboard")), title: "Activity", tag: 0)
-//        activityBarItem.tintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        activityBarItem.selectedTintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         activityVC.tabBarItem = activityBarItem
         let settingsVC = SampleViewController()
         let settintstabBarItem = KYTabBarItem.init(KYTabBarItemImageContentView(image: #imageLiteral(resourceName: "folder"), selectedImage: #imageLiteral(resourceName: "clock")), title: "Settings", tag: 0)
-//        settintstabBarItem.tintColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+        settintstabBarItem.selectedTintColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
         settingsVC.tabBarItem = settintstabBarItem
         let tabBarController = KYTabBarController()
-        tabBarController.viewControllers = [eventsVC, searchVC, activityVC, settingsVC]
+        tabBarController.viewControllers = [eventsVC, searchVC, activityVC]
         tabBarController.setItemCornerRadius(10.0)
         tabBarController.setUnselectedItemTintColor(.gray)
         self.present(tabBarController, animated: true, completion: nil)

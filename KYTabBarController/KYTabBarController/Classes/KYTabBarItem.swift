@@ -24,11 +24,17 @@ open class KYTabBarItem: UITabBarItem {
         didSet { self.contentView?.tag = tag }
     }
     
-    open var selected: Bool = false {
-        didSet {
-            selected ? self.contentView?.unfold() : self.contentView?.fold()
+    open func setSelected(selected: Bool, animated: Bool) {
+        self.selected = selected
+        
+        if (animated) {
+            self.selected ? self.contentView?.unfold() : self.contentView?.fold()
+        } else {
+            //TODO: Select without animation
         }
     }
+    
+    private var selected: Bool = false
     
     @IBInspectable public var selectedTintColor: UIColor?{
         didSet {
