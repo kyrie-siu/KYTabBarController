@@ -6,13 +6,26 @@
 	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		28D8E2A524E4654000E475BD /* FrameworkBuilder */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 28D8E2A624E4654000E475BD /* Build configuration list for PBXAggregateTarget "FrameworkBuilder" */;
+			buildPhases = (
+				28D8E2A924E4654500E475BD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = FrameworkBuilder;
+			productName = FrameworkBuilder;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		280DAA8E24E2BA4900B192E9 /* KYTabBarItemContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280DAA8D24E2BA4900B192E9 /* KYTabBarItemContainer.swift */; };
 		280DAA9024E2BA6200B192E9 /* KYTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280DAA8F24E2BA6200B192E9 /* KYTabBarItemContentView.swift */; };
 		289010C824E157BD00AED969 /* KYTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 289010C624E157BD00AED969 /* KYTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		289010D724E1588000AED969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289010D624E1588000AED969 /* AppDelegate.swift */; };
 		289010D924E1588000AED969 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289010D824E1588000AED969 /* SceneDelegate.swift */; };
-		289010DB24E1588000AED969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289010DA24E1588000AED969 /* ViewController.swift */; };
 		289010DE24E1588000AED969 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 289010DC24E1588000AED969 /* Main.storyboard */; };
 		289010E024E1588100AED969 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 289010DF24E1588100AED969 /* Assets.xcassets */; };
 		289010E324E1588100AED969 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 289010E124E1588100AED969 /* LaunchScreen.storyboard */; };
@@ -25,7 +38,13 @@
 		28CE4A7F24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE4A7E24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift */; };
 		28D1FCB324E3E59D00C01116 /* KYTabBarItemLottieContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1FCB224E3E59D00C01116 /* KYTabBarItemLottieContentView.swift */; };
 		28D1FCCB24E3E87E00C01116 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 28D1FCCA24E3E87E00C01116 /* Lottie */; };
-		28D1FCD224E3EF3100C01116 /* menubarRoutePage.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D1FCD124E3EF3100C01116 /* menubarRoutePage.json */; };
+		28D2192324E42D3000F6E0E8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2192224E42D3000F6E0E8 /* MainTabBarController.swift */; };
+		28D2192C24E42E5B00F6E0E8 /* tab_yc_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D2192624E42E5B00F6E0E8 /* tab_yc_dark.json */; };
+		28D2192D24E42E5B00F6E0E8 /* tab_settings_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D2192724E42E5B00F6E0E8 /* tab_settings_dark.json */; };
+		28D2192E24E42E5B00F6E0E8 /* tab_yc_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D2192824E42E5B00F6E0E8 /* tab_yc_light.json */; };
+		28D2192F24E42E5B00F6E0E8 /* tab_route_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D2192924E42E5B00F6E0E8 /* tab_route_light.json */; };
+		28D2193024E42E5B00F6E0E8 /* tab_settings_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D2192A24E42E5B00F6E0E8 /* tab_settings_light.json */; };
+		28D2193124E42E5B00F6E0E8 /* tab_route_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 28D2192B24E42E5B00F6E0E8 /* tab_route_dark.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +70,6 @@
 		289010D424E1588000AED969 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		289010D624E1588000AED969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		289010D824E1588000AED969 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		289010DA24E1588000AED969 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		289010DD24E1588000AED969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		289010DF24E1588100AED969 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		289010E224E1588100AED969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,7 +80,13 @@
 		289010F324E15AF200AED969 /* KYTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYTabBar.swift; sourceTree = "<group>"; };
 		28CE4A7E24E3DBA4006224D4 /* KYTabBarItemImageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYTabBarItemImageContentView.swift; sourceTree = "<group>"; };
 		28D1FCB224E3E59D00C01116 /* KYTabBarItemLottieContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYTabBarItemLottieContentView.swift; sourceTree = "<group>"; };
-		28D1FCD124E3EF3100C01116 /* menubarRoutePage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menubarRoutePage.json; sourceTree = "<group>"; };
+		28D2192224E42D3000F6E0E8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		28D2192624E42E5B00F6E0E8 /* tab_yc_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_yc_dark.json; sourceTree = "<group>"; };
+		28D2192724E42E5B00F6E0E8 /* tab_settings_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_settings_dark.json; sourceTree = "<group>"; };
+		28D2192824E42E5B00F6E0E8 /* tab_yc_light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_yc_light.json; sourceTree = "<group>"; };
+		28D2192924E42E5B00F6E0E8 /* tab_route_light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_route_light.json; sourceTree = "<group>"; };
+		28D2192A24E42E5B00F6E0E8 /* tab_settings_light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_settings_light.json; sourceTree = "<group>"; };
+		28D2192B24E42E5B00F6E0E8 /* tab_route_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_route_dark.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +154,9 @@
 		289010D524E1588000AED969 /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				28D2192424E42E2800F6E0E8 /* Core */,
 				28D1FCCC24E3EC5400C01116 /* Lottie */,
-				289010D624E1588000AED969 /* AppDelegate.swift */,
-				289010D824E1588000AED969 /* SceneDelegate.swift */,
-				289010DA24E1588000AED969 /* ViewController.swift */,
+				28D2192224E42D3000F6E0E8 /* MainTabBarController.swift */,
 				289010E824E158B400AED969 /* SampleViewController.swift */,
 				28D1FCB224E3E59D00C01116 /* KYTabBarItemLottieContentView.swift */,
 				289010DC24E1588000AED969 /* Main.storyboard */,
@@ -155,9 +178,23 @@
 		28D1FCCC24E3EC5400C01116 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				28D1FCD124E3EF3100C01116 /* menubarRoutePage.json */,
+				28D2192B24E42E5B00F6E0E8 /* tab_route_dark.json */,
+				28D2192924E42E5B00F6E0E8 /* tab_route_light.json */,
+				28D2192724E42E5B00F6E0E8 /* tab_settings_dark.json */,
+				28D2192A24E42E5B00F6E0E8 /* tab_settings_light.json */,
+				28D2192624E42E5B00F6E0E8 /* tab_yc_dark.json */,
+				28D2192824E42E5B00F6E0E8 /* tab_yc_light.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		28D2192424E42E2800F6E0E8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				289010D624E1588000AED969 /* AppDelegate.swift */,
+				289010D824E1588000AED969 /* SceneDelegate.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		28E0E76024E273F90032E455 /* Frameworks */ = {
@@ -237,6 +274,9 @@
 					289010D324E1588000AED969 = {
 						CreatedOnToolsVersion = 11.6;
 					};
+					28D8E2A524E4654000E475BD = {
+						CreatedOnToolsVersion = 11.6;
+					};
 				};
 			};
 			buildConfigurationList = 283BBAE824DF32970080BF5A /* Build configuration list for PBXProject "KYTabBarController" */;
@@ -257,6 +297,7 @@
 			targets = (
 				289010D324E1588000AED969 /* ExampleApp */,
 				289010C324E157BD00AED969 /* KYTabBarController */,
+				28D8E2A524E4654000E475BD /* FrameworkBuilder */,
 			);
 		};
 /* End PBXProject section */
@@ -273,14 +314,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28D1FCD224E3EF3100C01116 /* menubarRoutePage.json in Resources */,
+				28D2192E24E42E5B00F6E0E8 /* tab_yc_light.json in Resources */,
 				289010E324E1588100AED969 /* LaunchScreen.storyboard in Resources */,
 				289010E024E1588100AED969 /* Assets.xcassets in Resources */,
+				28D2192D24E42E5B00F6E0E8 /* tab_settings_dark.json in Resources */,
+				28D2192F24E42E5B00F6E0E8 /* tab_route_light.json in Resources */,
+				28D2193124E42E5B00F6E0E8 /* tab_route_dark.json in Resources */,
+				28D2193024E42E5B00F6E0E8 /* tab_settings_light.json in Resources */,
 				289010DE24E1588000AED969 /* Main.storyboard in Resources */,
+				28D2192C24E42E5B00F6E0E8 /* tab_yc_dark.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28D8E2A924E4654500E475BD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Merge Script\n\n# 1\n# Set bash script to exit immediately if any commands fail.\nset -e\n\n# 2\n# Setup some constants for use later on.\nFRAMEWORK_NAME=\"KYTabBarController\"\nIPHONE_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\nSIMULATOR_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\nUNIVERSAL_PATH=\"${BUILD_DIR}/${CONFIGURATION}-universal/${FRAMEWORK_NAME}.framework\"\nOUTPUT_FOLDER=\"${PROJECT_DIR}/${FRAMEWORK_NAME}/framework\"\n\n# 3\n# If remnants from a previous build exist, delete them.\nif [ -d \"${BUILD_DIR}\" ]; then\nrm -rf \"${BUILD_DIR}\"\nfi\n\n# 4\n# Make sure the UNIVERSAL_PATH directory exists\nmkdir -p ${UNIVERSAL_PATH}\n\n# 5\n# Build the framework for device and for simulator (using all needed architectures).\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration ${CONFIGURATION} -arch x86_64 -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration ${CONFIGURATION} -sdk iphoneos ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# 6\n# Copy the device version of framework to Desktop.\ncp -r \"${IPHONE_PATH}\" \"${BUILD_DIR}/${CONFIGURATION}-universal\"\n\n# 7\n# Replace the framework executable within the framework with a new version created by merging the device and simulator # frameworks' executables with lipo.\n\nlipo -create -output \"${UNIVERSAL_PATH}/${FRAMEWORK_NAME}\" \"${SIMULATOR_PATH}/${FRAMEWORK_NAME}\" \"${IPHONE_PATH}/${FRAMEWORK_NAME}\"\n\n# 8 \n# Copy the Swift module mappings for the simulator into the # framework. The device mappings already exist from step 6.\ncp -r \"${SIMULATOR_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" \"${UNIVERSAL_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\"\n\n# 9\n# Create framework directory in project directory for putting framework file\nmkdir -p \"${OUTPUT_FOLDER}\"\n\n# 10\n# Copy the universal framework file into the framework directory\ncp -r \"${UNIVERSAL_PATH}\" \"${OUTPUT_FOLDER}\"\n\n# 11\n# Remove the build directory in the project directory\nif [ -d \"${PROJECT_DIR}/build\" ]; then\nrm -rf \"${PROJECT_DIR}/build\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		289010C024E157BD00AED969 /* Sources */ = {
@@ -301,7 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28D1FCB324E3E59D00C01116 /* KYTabBarItemLottieContentView.swift in Sources */,
-				289010DB24E1588000AED969 /* ViewController.swift in Sources */,
+				28D2192324E42D3000F6E0E8 /* MainTabBarController.swift in Sources */,
 				289010D724E1588000AED969 /* AppDelegate.swift in Sources */,
 				289010E924E158B400AED969 /* SampleViewController.swift in Sources */,
 				289010D924E1588000AED969 /* SceneDelegate.swift in Sources */,
@@ -467,7 +533,9 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACH_O_TYPE = staticlib;
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ky-ios.KYTabBarController";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -475,6 +543,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7s armv7 i386 x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -502,6 +571,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACH_O_TYPE = staticlib;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ky-ios.KYTabBarController";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -509,6 +579,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7s armv7 i386 x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -564,6 +635,24 @@
 			};
 			name = Release;
 		};
+		28D8E2A724E4654000E475BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3X6GKD3BEJ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		28D8E2A824E4654000E475BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3X6GKD3BEJ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -590,6 +679,15 @@
 			buildConfigurations = (
 				289010E624E1588100AED969 /* Debug */,
 				289010E724E1588100AED969 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28D8E2A624E4654000E475BD /* Build configuration list for PBXAggregateTarget "FrameworkBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28D8E2A724E4654000E475BD /* Debug */,
+				28D8E2A824E4654000E475BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

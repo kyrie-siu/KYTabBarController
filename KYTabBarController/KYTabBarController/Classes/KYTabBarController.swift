@@ -69,6 +69,12 @@ open class KYTabBarController: UITabBarController {
         }
     }
     
+    public func setTabBarBackgroundColor(_ color: UIColor) {
+        if let tabBar = self.tabBar as? KYTabBar {
+            tabBar.backgroundColor = color
+        }
+    }
+    
     public func setItemCornerRadius(_ radius: CGFloat) {
         if let tabBar = self.tabBar as? KYTabBar {
             tabBar.cornerRadius = radius

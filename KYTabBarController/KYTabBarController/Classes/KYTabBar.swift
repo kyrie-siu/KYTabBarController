@@ -96,7 +96,7 @@ open class KYTabBar: UITabBar {
     var view: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         return view
     }()
     

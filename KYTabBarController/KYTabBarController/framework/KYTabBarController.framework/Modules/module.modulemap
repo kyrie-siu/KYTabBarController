@@ -1,0 +1,11 @@
+framework module KYTabBarController {
+  umbrella header "KYTabBarController.h"
+
+  export *
+  module * { export * }
+}
+
+module KYTabBarController.Swift {
+    header "KYTabBarController-Swift.h"
+    requires objc
+}
