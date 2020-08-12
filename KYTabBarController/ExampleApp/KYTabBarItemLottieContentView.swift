@@ -53,12 +53,18 @@ open class KYTabBarItemLottieContentView: KYTabBarItemContentView {
     
     open override func fold() {
         super.fold()
-        self.animationView?.stop()
+        
+        DispatchQueue.main.async {
+            self.animationView?.stop()
+        }
     }
     
     open override func unfold() {
         super.unfold()
-        self.animationView?.play()
+        
+        DispatchQueue.main.async {
+            self.animationView?.play()
+        }
     }
     
 }

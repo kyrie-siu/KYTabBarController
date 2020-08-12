@@ -144,6 +144,8 @@ open class KYTabBarItemContentView: UIView {
         self.assetView.widthAnchor.constraint(equalToConstant: self.tabHeight*0.7).isActive = true
 
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        self.titleLabel.setContentHuggingPriority(.required, for: .horizontal)
+        self.titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         //Add height constraint of the view
         self.heightAnchor.constraint(equalToConstant: self.tabHeight).isActive = true
