@@ -59,10 +59,6 @@ open class KYTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationDidChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
-    
-    deinit {
-       NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
-    }
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -177,7 +173,7 @@ extension KYTabBarController: KYTabBarDelegate {
                         toView.subviews.forEach {$0.alpha = 1.0}
                         toView.center = CGPoint(x: toView.center.x - offset, y: toView.center.y)
 
-        }, completion: { finished in
+        }, completion: { _ in
             // Remove the old view from the tabbar view.
             fromView.removeFromSuperview()
             self.selectedIndex = toIndex

@@ -21,21 +21,19 @@ open class KYTabBarItemLottieContentView: KYTabBarItemContentView {
         if let name = animationName {
             self.animation = Animation.named(name)
         }
-        
         self.placeholderImage = placeholderImage
         super.init(frame: CGRect.zero)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
     public override func configureSubviews() {
         super.configureSubviews()
         
         self.animationView = AnimationView(animation: self.animation)
-        
+
         if let animationView = self.animationView {
             animationView.translatesAutoresizingMaskIntoConstraints = false
             animationView.contentMode = .scaleAspectFill
@@ -66,5 +64,4 @@ open class KYTabBarItemLottieContentView: KYTabBarItemContentView {
             self.animationView?.play()
         }
     }
-    
 }
