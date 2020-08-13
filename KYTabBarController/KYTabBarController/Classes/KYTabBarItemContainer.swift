@@ -28,15 +28,15 @@ internal class KYTabBarItemContainer: UIControl {
     }
     
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        var b = super.point(inside: point, with: event)
-        if !b {
+        var bool = super.point(inside: point, with: event)
+        if !bool {
             for subview in self.subviews {
                 if subview.point(inside: CGPoint.init(x: point.x - subview.frame.origin.x, y: point.y - subview.frame.origin.y), with: event) {
-                    b = true
+                    bool = true
                 }
             }
         }
-        return b
+        return bool
     }
 
 }

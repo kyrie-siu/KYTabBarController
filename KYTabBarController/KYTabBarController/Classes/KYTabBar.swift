@@ -14,7 +14,7 @@ internal protocol KYTabBarDelegate: NSObjectProtocol {
 
 open class KYTabBar: UITabBar {
     
-    //MARK: - Property
+    // MARK: - Property
     internal weak var customDelegate: KYTabBarDelegate?
 
     internal var containers = [KYTabBarItemContainer]()
@@ -25,7 +25,7 @@ open class KYTabBar: UITabBar {
         }
     }
     
-    //MARK: - Appearance
+    // MARK: - Appearance
     
     open var tabBarItemHeight: CGFloat = 48.0
     open override var tintColor: UIColor! {
@@ -68,7 +68,7 @@ open class KYTabBar: UITabBar {
         }
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     /*
      Change TabBar Height
@@ -85,7 +85,7 @@ open class KYTabBar: UITabBar {
         super.setItems(items, animated: animated)
         self.reloadView()
         
-        if self.selectedItem == nil, self.items!.count > 0 {
+        if self.selectedItem == nil, self.items!.isEmpty {
             self.select(itemAt: 0, animated: true)
         }
     }
@@ -187,33 +187,34 @@ open class KYTabBar: UITabBar {
         self.layoutIfNeeded()
     }
     
-    func reload(_ animated:Bool) {
+    func reload(_ animated: Bool) {
         guard let itemsCount = self.items?.count else {
             fatalError("Reload view failed cause no items!")
         }
         
         self.minButtonWidth = CGFloat(self.view.bounds.width) / CGFloat(itemsCount)
         
-        for item in self.items as! [KYTabBarItem] {
-            if let contentView = item.contentView {
+        for item in self.items! {
+            if let kyItem = item as? KYTabBarItem, let contentView = kyItem.contentView {
                 contentView.deactiveWidthConstraint()
             }
         }
                 
         var fitWidth: CGFloat = self.minButtonWidth
-        for item in self.items as! [KYTabBarItem] {
-            if let contentView = item.contentView, contentView.selected {
+        
+        for item in self.items! {
+            if let kyItem = item as? KYTabBarItem, let contentView = kyItem.contentView, contentView.selected {
                 fitWidth = max(contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width, self.minButtonWidth)
                 break
             }
         }
-        
+
         let reminingAverageWidth = ((self.view.bounds.width - (self.basementStackView.spacing * CGFloat(itemsCount-1)) - fitWidth)/CGFloat(itemsCount-1))
         print("container width =", self.view.bounds.width)
         print("fitWidth =", fitWidth, "reminingAverageWidth =", reminingAverageWidth)
         
-        for item in self.items as! [KYTabBarItem] {
-            if let contentView = item.contentView {
+        for item in self.items! {
+            if let kyItem = item as? KYTabBarItem, let contentView = kyItem.contentView {
                 contentView.updateWidthConstraint(contentView.selected ? fitWidth : reminingAverageWidth)
             }
         }
@@ -223,7 +224,7 @@ open class KYTabBar: UITabBar {
         }
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc func highlightAction(_ sender: AnyObject?) {
         guard let container = sender as? KYTabBarItemContainer else {
@@ -293,6 +294,5 @@ open class KYTabBar: UITabBar {
         
         self.delegate?.tabBar?(self, didSelect: item)
     }
-    
     
 }

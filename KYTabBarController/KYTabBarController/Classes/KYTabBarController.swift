@@ -120,22 +120,22 @@ open class KYTabBarController: UITabBarController {
     }
 
     open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        guard let idx = tabBar.items?.firstIndex(of: item) else {
+        guard let index = tabBar.items?.firstIndex(of: item) else {
             return
         }
         
-        if let vc = viewControllers?[idx] {
+        if let viewController = viewControllers?[index] {
             self.ignoreNextSelection = true
-            self.selectedIndex = idx
-            self.delegate?.tabBarController?(self, didSelect: vc)
+            self.selectedIndex = index
+            self.delegate?.tabBarController?(self, didSelect: viewController)
         }
     }
 }
 
 extension KYTabBarController: KYTabBarDelegate {
     internal func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem) -> Bool {
-        if let index = tabBar.items?.firstIndex(of: item), let vc = self.viewControllers?[index] {
-            let shouldSelect = self.delegate?.tabBarController?(self, shouldSelect: vc) ?? true
+        if let index = tabBar.items?.firstIndex(of: item), let viewController = self.viewControllers?[index] {
+            let shouldSelect = self.delegate?.tabBarController?(self, shouldSelect: viewController) ?? true
             self.animateToTab(toIndex: index)
             return shouldSelect
         }
@@ -150,7 +150,6 @@ extension KYTabBarController: KYTabBarDelegate {
             let toView = tabViewControllers[toIndex].view,
             let fromIndex = tabViewControllers.firstIndex(of: selectedVC),
             fromIndex != toIndex else { return }
-
 
         // Add the toView to the tab bar view
         fromView.superview?.addSubview(toView)

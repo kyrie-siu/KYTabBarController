@@ -10,8 +10,8 @@ import UIKit
 
 open class KYTabBarItemContentView: UIView {
     
-    //MARK: - Property
-    //MARK: Appearance
+    // MARK: - Property
+    // MARK: Appearance
     open var tabHeight: CGFloat = 42.0
     
     open var animationDuration: TimeInterval = 0.3
@@ -46,7 +46,7 @@ open class KYTabBarItemContentView: UIView {
         }
     }
     
-    //MARK: Views
+    // MARK: Views
     open var contentStackView: UIStackView = {
         let contentStackView = UIStackView()
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ open class KYTabBarItemContentView: UIView {
         return titleLabel
     }()
     
-    //TODO: Badge View
+    // TODO: Badge View
     
 //    open var badgeValue: String? {
 //        didSet {
@@ -119,7 +119,7 @@ open class KYTabBarItemContentView: UIView {
 //        }
 //    }
     
-    //MARK: - Initialization
+    // MARK: - Initialization
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -131,7 +131,7 @@ open class KYTabBarItemContentView: UIView {
         super.init(coder: aDecoder)
     }
     
-    //MARK: - View Configuration
+    // MARK: - View Configuration
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -167,13 +167,13 @@ open class KYTabBarItemContentView: UIView {
     // MARK: - INTERNAL METHODS
     
     internal func reloadView() {
-        if self.contentStackView.arrangedSubviews.count == 0 {
+        if self.contentStackView.arrangedSubviews.isEmpty {
             self.configureSubviews()
         }
         
         self.tintColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
 
-        if self.selectedBackgroundColor != nil{
+        if self.selectedBackgroundColor != nil {
             self.backgroundColor = self.selected ? self.selectedBackgroundColor : .clear
         } else {
             self.backgroundColor = self.selected ? self.selectedTintColor?.withAlphaComponent(0.2) : .clear
@@ -187,20 +187,18 @@ open class KYTabBarItemContentView: UIView {
         
         self.titleLabel.textColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
         
-        if self.assetView.subviews.count > 0 {
-            if (self.assetView.isHidden) {
+        if self.assetView.subviews.isEmpty {
+            if self.assetView.isHidden {
                 self.assetView.isHidden = false
             }
             
             if self.selected {
-                if (self.titleLabel.isHidden) { self.titleLabel.isHidden = false }
+                if self.titleLabel.isHidden { self.titleLabel.isHidden = false }
             } else {
-                if (!self.titleLabel.isHidden) { self.titleLabel.isHidden = true }
+                if !self.titleLabel.isHidden { self.titleLabel.isHidden = true }
             }
         } else {
-            if (!self.assetView.isHidden) {
-                self.assetView.isHidden = true
-            }
+            if !self.assetView.isHidden { self.assetView.isHidden = true }
         }
         
     }
@@ -226,11 +224,11 @@ open class KYTabBarItemContentView: UIView {
         self.selected = false
         
         let duration = animated ? animationDuration : 0
-        UIView.animate(withDuration: duration, delay:  duration/3, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
+        UIView.animate(withDuration: duration, delay: duration/3, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
             self.reloadView()
         }, completion: nil)
         
-        if self.assetView.subviews.count > 0 {
+        if self.assetView.subviews.isEmpty {
             UIView.animate(withDuration: duration/2, delay: 0.0, animations: {
                 self.titleLabel.alpha = 0.0
             }, completion: nil)
@@ -242,7 +240,7 @@ open class KYTabBarItemContentView: UIView {
         self.selected = true
         
         let duration = animated ? animationDuration : 0
-        if self.assetView.subviews.count > 0 {
+        if self.assetView.subviews.isEmpty {
             UIView.animate(withDuration: duration/2, delay: duration/2.5, animations: {
                 self.titleLabel.alpha = 1.0
             }, completion: nil)
@@ -253,7 +251,7 @@ open class KYTabBarItemContentView: UIView {
         }, completion: nil)
     }
     
-    open var widthConstraint : NSLayoutConstraint?
+    open var widthConstraint: NSLayoutConstraint?
     
     internal func createWidthConstraint(_ constant: CGFloat) {
         self.widthConstraint = self.widthAnchor.constraint(equalToConstant: constant)

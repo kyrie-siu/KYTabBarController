@@ -26,7 +26,7 @@ open class KYTabBarItem: UITabBarItem {
     
     private var selected: Bool = false
     
-    @IBInspectable public var selectedTintColor: UIColor?{
+    @IBInspectable public var selectedTintColor: UIColor? {
         didSet {
             self.contentView?.selectedTintColor = selectedTintColor
         }
@@ -44,7 +44,7 @@ open class KYTabBarItem: UITabBarItem {
         }
     }
     
-    //MARK: Initialization
+    // MARK: Initialization
     
     public init(_ contentView: KYTabBarItemContentView, title: String?, tag: Int) {
         super.init()
@@ -56,12 +56,12 @@ open class KYTabBarItem: UITabBarItem {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open func setProperties(_ title: String?,_ tag: Int) {
+    open func setProperties(_ title: String?, _ tag: Int) {
         self.title = title
         self.tag = tag
     }
     
-    //MARK: Methods
+    // MARK: Methods
     
     open func setSelected(selected: Bool, animated: Bool) {
         self.selected = selected
@@ -69,4 +69,3 @@ open class KYTabBarItem: UITabBarItem {
         self.selected ? self.contentView?.unfold(animated: animated) : self.contentView?.fold(animated: animated)
     }
 }
-
