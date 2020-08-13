@@ -204,29 +204,51 @@ open class KYTabBarItemContentView: UIView {
         }
         
     }
+    
+    open func highlight(animated: Bool) {
+        let duration = animated ? animationDuration : 0
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
+            self.assetView.alpha = 0.7
+            self.titleLabel.alpha = 0.7
+        }, completion: nil)
+    }
+    
+    open func dehighlight(animated: Bool) {
+        let duration = animated ? animationDuration/2 : 0
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
+            self.assetView.alpha = 1.0
+            self.titleLabel.alpha = 1.0
+        }, completion: nil)
+    }
 
-    open func fold() {
+    open func fold(animated: Bool) {
+        self.dehighlight(animated: false)
         self.selected = false
-        UIView.animate(withDuration: animationDuration, delay:  animationDuration/3, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
+        
+        let duration = animated ? animationDuration : 0
+        UIView.animate(withDuration: duration, delay:  duration/3, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
             self.reloadView()
         }, completion: nil)
         
         if self.assetView.subviews.count > 0 {
-            UIView.animate(withDuration: animationDuration/2, delay: 0.0, animations: {
+            UIView.animate(withDuration: duration/2, delay: 0.0, animations: {
                 self.titleLabel.alpha = 0.0
             }, completion: nil)
         }
     }
 
-    open func unfold() {
+    open func unfold(animated: Bool) {
+        self.dehighlight(animated: false)
         self.selected = true
+        
+        let duration = animated ? animationDuration : 0
         if self.assetView.subviews.count > 0 {
-            UIView.animate(withDuration: animationDuration/2, delay: animationDuration/2.5, animations: {
+            UIView.animate(withDuration: duration/2, delay: duration/2.5, animations: {
                 self.titleLabel.alpha = 1.0
             }, completion: nil)
         }
         
-        UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 4.0, initialSpringVelocity: 1.0, options: .transitionCrossDissolve, animations: {
             self.reloadView()
         }, completion: nil)
     }

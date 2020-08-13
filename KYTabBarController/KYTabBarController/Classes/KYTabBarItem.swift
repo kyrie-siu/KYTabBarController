@@ -24,16 +24,6 @@ open class KYTabBarItem: UITabBarItem {
         didSet { self.contentView?.tag = tag }
     }
     
-    open func setSelected(selected: Bool, animated: Bool) {
-        self.selected = selected
-        
-        if (animated) {
-            self.selected ? self.contentView?.unfold() : self.contentView?.fold()
-        } else {
-            //TODO: Select without animation
-        }
-    }
-    
     private var selected: Bool = false
     
     @IBInspectable public var selectedTintColor: UIColor?{
@@ -54,6 +44,8 @@ open class KYTabBarItem: UITabBarItem {
         }
     }
     
+    //MARK: Initialization
+    
     public init(_ contentView: KYTabBarItemContentView, title: String?, tag: Int) {
         super.init()
         self.contentView = contentView
@@ -67,6 +59,14 @@ open class KYTabBarItem: UITabBarItem {
     open func setProperties(_ title: String?,_ tag: Int) {
         self.title = title
         self.tag = tag
+    }
+    
+    //MARK: Methods
+    
+    open func setSelected(selected: Bool, animated: Bool) {
+        self.selected = selected
+        
+        self.selected ? self.contentView?.unfold(animated: animated) : self.contentView?.fold(animated: animated)
     }
 }
 

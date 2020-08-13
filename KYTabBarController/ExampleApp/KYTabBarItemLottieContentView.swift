@@ -51,16 +51,16 @@ open class KYTabBarItemLottieContentView: KYTabBarItemContentView {
         self.contentStackView.layoutIfNeeded()
     }
     
-    open override func fold() {
-        super.fold()
+    open override func fold(animated: Bool) {
+        super.fold(animated: animated)
         
         DispatchQueue.main.async {
             self.animationView?.stop()
         }
     }
     
-    open override func unfold() {
-        super.unfold()
+    open override func unfold(animated: Bool) {
+        super.unfold(animated: animated)
         
         DispatchQueue.main.async {
             self.animationView?.play()

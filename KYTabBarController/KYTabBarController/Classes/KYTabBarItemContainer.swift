@@ -13,7 +13,12 @@ internal class KYTabBarItemContainer: UIControl {
     internal init(_ target: AnyObject?, tag: Int) {
         super.init(frame: CGRect.zero)
         self.tag = tag
+        
         self.addTarget(target, action: #selector(KYTabBar.selectAction(_:)), for: .touchUpInside)
+        self.addTarget(target, action: #selector(KYTabBar.highlightAction(_:)), for: .touchDown)
+        self.addTarget(target, action: #selector(KYTabBar.highlightAction(_:)), for: .touchDragEnter)
+        self.addTarget(target, action: #selector(KYTabBar.dehighlightAction(_:)), for: .touchDragExit)
+
         self.backgroundColor = .clear
         self.isAccessibilityElement = true
     }

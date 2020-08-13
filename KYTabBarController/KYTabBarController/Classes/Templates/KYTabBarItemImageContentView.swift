@@ -41,12 +41,4 @@ public class KYTabBarItemImageContentView: KYTabBarItemContentView {
         self.contentStackView.layoutIfNeeded()
     }
     
-    public override func fold() {
-        super.fold()
-    }
-    
-    public override func unfold() {
-        super.unfold()
-    }
-    
 }

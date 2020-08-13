@@ -10,38 +10,44 @@ import UIKit
 
 open class KYTabBarController: UITabBarController {
 
-    fileprivate var shouldSelectOnTabBar = true
+    fileprivate var shouldSelectItem = true
 
     open override var selectedViewController: UIViewController? {
         willSet {
-            guard shouldSelectOnTabBar,
-                  let newValue = newValue else {
-                shouldSelectOnTabBar = true
+            guard self.shouldSelectItem,
+                let newValue = newValue else {
+                self.shouldSelectItem = true
                 return
             }
-            guard let tabBar = tabBar as? KYTabBar, let index = viewControllers?.firstIndex(of: newValue) else {
+            guard let tabBar = self.tabBar as? KYTabBar, let index = viewControllers?.firstIndex(of: newValue) else {
                 return
             }
-            tabBar.select(itemAt: index, animated: false)
+            tabBar.select(itemAt: index, animated: true)
         }
     }
 
     open override var selectedIndex: Int {
         willSet {
-            guard shouldSelectOnTabBar else {
-                shouldSelectOnTabBar = true
+            guard self.shouldSelectItem else {
+                self.shouldSelectItem = true
                 return
             }
-            guard let tabBar = tabBar as? KYTabBar else {
+            guard let tabBar = self.tabBar as? KYTabBar else {
                 return
             }
-            tabBar.select(itemAt: selectedIndex, animated: false)
+            tabBar.select(itemAt: selectedIndex, animated: true)
         }
     }
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        let tabBar = KYTabBar()
+        
+        let tabBar = { () -> KYTabBar in
+            let tabBar = KYTabBar()
+            tabBar.delegate = self
+            tabBar.customDelegate = self
+            return tabBar
+        }()
         self.setValue(tabBar, forKey: "tabBar")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationDidChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
@@ -110,11 +116,19 @@ open class KYTabBarController: UITabBarController {
         guard let idx = tabBar.items?.firstIndex(of: item) else {
             return
         }
-        if let controller = viewControllers?[idx] {
-            self.shouldSelectOnTabBar = false
+        if let controller = self.viewControllers?[idx] {
+            self.shouldSelectItem = false
             self.selectedIndex = idx
             self.delegate?.tabBarController?(self, didSelect: controller)
         }
     }
+}
 
+extension KYTabBarController: KYTabBarDelegate {
+    internal func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem) -> Bool {
+        if let index = tabBar.items?.firstIndex(of: item), let vc = self.viewControllers?[index] {
+            return self.delegate?.tabBarController?(self, shouldSelect: vc) ?? true
+        }
+        return true
+    }
 }

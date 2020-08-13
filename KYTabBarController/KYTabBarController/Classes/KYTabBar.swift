@@ -8,18 +8,15 @@
 
 import UIKit
 
-internal protocol YKTabBarDelegate: NSObjectProtocol {
-
+internal protocol KYTabBarDelegate: NSObjectProtocol {
     func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem) -> Bool
-    func tabBar(_ tabBar: UITabBar, shouldHijack item: UITabBarItem) -> Bool
-    func tabBar(_ tabBar: UITabBar, didHijack item: UITabBarItem)
 }
 
 open class KYTabBar: UITabBar {
     
     //MARK: - Property
-    internal weak var customDelegate: YKTabBarDelegate?
-     
+    internal weak var customDelegate: KYTabBarDelegate?
+
     internal var containers = [KYTabBarItemContainer]()
     
     open override var items: [UITabBarItem]? {
@@ -228,20 +225,62 @@ open class KYTabBar: UITabBar {
     
     //MARK: - Actions
     
+    @objc func highlightAction(_ sender: AnyObject?) {
+        guard let container = sender as? KYTabBarItemContainer else {
+            return
+        }
+        let newIndex = max(0, container.tag - 1000)
+        guard newIndex < items?.count ?? 0, let item = self.items?[newIndex], item.isEnabled == true else {
+            return
+        }
+        
+        if (customDelegate?.tabBar(self, shouldSelect: item) ?? true) == false {
+            return
+        }
+        
+        if let item = item as? KYTabBarItem {
+            item.contentView?.highlight(animated: true)
+        }
+    }
+    
+    @objc func dehighlightAction(_ sender: AnyObject?) {
+        guard let container = sender as? KYTabBarItemContainer else {
+            return
+        }
+        let newIndex = max(0, container.tag - 1000)
+        guard newIndex < items?.count ?? 0, let item = self.items?[newIndex], item.isEnabled == true else {
+            return
+        }
+        
+        if (customDelegate?.tabBar(self, shouldSelect: item) ?? true) == false {
+            return
+        }
+        
+        if let item = item as? KYTabBarItem {
+            item.contentView?.dehighlight(animated: true)
+        }
+    }
+    
     @objc func selectAction(_ sender: AnyObject?) {
         guard let container = sender as? KYTabBarItemContainer else {
             return
         }
-        select(itemAt: container.tag - 1000, animated: true)
+        self.select(itemAt: container.tag - 1000, animated: true)
     }
     
     func select(itemAt index: Int, animated: Bool = false) {
         guard index < self.items!.count else {
-            print("out of bounds!")
             return
         }
         
         guard let item = self.items?[index] else {
+            return
+        }
+        
+        guard self.selectedItem != item else {
+            if let item = item as? KYTabBarItem {
+                item.contentView?.dehighlight(animated: true)
+            }
             return
         }
         
