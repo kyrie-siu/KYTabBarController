@@ -43,18 +43,4 @@ class MainTabBarController: KYTabBarController {
         self.setItemCornerRadius(10.0)
         self.setUnselectedItemTintColor(.gray)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.selectedIndex = 2
-    }
-}
-
-extension KYTabBarController: UITabBarControllerDelegate {
-    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if let index = self.viewControllers?.firstIndex(of: viewController), index == self.selectedIndex {
-            return false
-        }
-        
-        return true
-    }
 }

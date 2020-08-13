@@ -9,33 +9,40 @@
 import UIKit
 
 open class KYTabBarController: UITabBarController {
+    
+    fileprivate var ignoreNextSelection = false
 
-    fileprivate var shouldSelectItem = true
-
+    /// Observer tabBarController's selectedViewController. change its selection when it will-set.
     open override var selectedViewController: UIViewController? {
         willSet {
-            guard self.shouldSelectItem,
-                let newValue = newValue else {
-                self.shouldSelectItem = true
+            guard let newValue = newValue else {
+                // if newValue == nil ...
                 return
             }
-            guard let tabBar = self.tabBar as? KYTabBar, let index = viewControllers?.firstIndex(of: newValue) else {
+            guard !self.ignoreNextSelection else {
+                self.ignoreNextSelection = false
                 return
             }
-            tabBar.select(itemAt: index, animated: true)
+            guard let tabBar = self.tabBar as? KYTabBar, let items = tabBar.items, let index = viewControllers?.firstIndex(of: newValue) else {
+                return
+            }
+            let value = (index > items.count - 1) ? items.count - 1 : index
+            tabBar.select(itemAt: value, animated: false)
         }
     }
-
+    
+    /// Observer tabBarController's selectedIndex. change its selection when it will-set.
     open override var selectedIndex: Int {
         willSet {
-            guard self.shouldSelectItem else {
-                self.shouldSelectItem = true
+            guard !self.ignoreNextSelection else {
+                self.ignoreNextSelection = false
                 return
             }
-            guard let tabBar = self.tabBar as? KYTabBar else {
+            guard let tabBar = self.tabBar as? KYTabBar, let items = tabBar.items else {
                 return
             }
-            tabBar.select(itemAt: selectedIndex, animated: true)
+            let value = (newValue > items.count - 1) ? items.count - 1 : newValue
+            tabBar.select(itemAt: value, animated: false)
         }
     }
 
@@ -116,10 +123,11 @@ open class KYTabBarController: UITabBarController {
         guard let idx = tabBar.items?.firstIndex(of: item) else {
             return
         }
-        if let controller = self.viewControllers?[idx] {
-            self.shouldSelectItem = false
+        
+        if let vc = viewControllers?[idx] {
+            self.ignoreNextSelection = true
             self.selectedIndex = idx
-            self.delegate?.tabBarController?(self, didSelect: controller)
+            self.delegate?.tabBarController?(self, didSelect: vc)
         }
     }
 }
@@ -127,8 +135,54 @@ open class KYTabBarController: UITabBarController {
 extension KYTabBarController: KYTabBarDelegate {
     internal func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem) -> Bool {
         if let index = tabBar.items?.firstIndex(of: item), let vc = self.viewControllers?[index] {
-            return self.delegate?.tabBarController?(self, shouldSelect: vc) ?? true
+            let shouldSelect = self.delegate?.tabBarController?(self, shouldSelect: vc) ?? true
+            self.animateToTab(toIndex: index)
+            return shouldSelect
         }
         return true
+    }
+    
+    func animateToTab(toIndex: Int) {
+        guard let tabViewControllers = self.viewControllers,
+            let selectedVC = self.selectedViewController else { return }
+
+        guard let fromView = selectedVC.view,
+            let toView = tabViewControllers[toIndex].view,
+            let fromIndex = tabViewControllers.firstIndex(of: selectedVC),
+            fromIndex != toIndex else { return }
+
+
+        // Add the toView to the tab bar view
+        fromView.superview?.addSubview(toView)
+
+        // Position toView off screen (to the left/right of fromView)
+        let screenWidth = UIScreen.main.bounds.size.width
+        let scrollRight = toIndex > fromIndex
+        let offset = (scrollRight ? screenWidth : -screenWidth)
+        toView.center = CGPoint(x: fromView.center.x + offset, y: toView.center.y)
+
+        // Disable interaction during animation
+        view.isUserInteractionEnabled = false
+        
+        toView.subviews.forEach {$0.alpha = 0.0}
+        
+        UIView.animate(withDuration: 0.25,
+                       delay: 0.1,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseOut,
+                       animations: {
+                        // Slide the views by -offset
+                        fromView.subviews.forEach {$0.alpha = 0.0}
+                        fromView.center = CGPoint(x: fromView.center.x - offset, y: fromView.center.y)
+                        toView.subviews.forEach {$0.alpha = 1.0}
+                        toView.center = CGPoint(x: toView.center.x - offset, y: toView.center.y)
+
+        }, completion: { finished in
+            // Remove the old view from the tabbar view.
+            fromView.removeFromSuperview()
+            self.selectedIndex = toIndex
+            self.view.isUserInteractionEnabled = true
+        })
     }
 }
