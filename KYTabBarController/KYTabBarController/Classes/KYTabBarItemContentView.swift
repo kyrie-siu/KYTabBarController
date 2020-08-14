@@ -187,7 +187,7 @@ open class KYTabBarItemContentView: UIView {
         
         self.titleLabel.textColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
         
-        if self.assetView.subviews.isEmpty {
+        if !self.assetView.subviews.isEmpty {
             if self.assetView.isHidden {
                 self.assetView.isHidden = false
             }
@@ -228,7 +228,7 @@ open class KYTabBarItemContentView: UIView {
             self.reloadView()
         }, completion: nil)
         
-        if self.assetView.subviews.isEmpty {
+        if !self.assetView.subviews.isEmpty {
             UIView.animate(withDuration: duration/2, delay: 0.0, animations: {
                 self.titleLabel.alpha = 0.0
             }, completion: nil)
@@ -240,7 +240,7 @@ open class KYTabBarItemContentView: UIView {
         self.selected = true
         
         let duration = animated ? animationDuration : 0
-        if self.assetView.subviews.isEmpty {
+        if !self.assetView.subviews.isEmpty {
             UIView.animate(withDuration: duration/2, delay: duration/2.5, animations: {
                 self.titleLabel.alpha = 1.0
             }, completion: nil)

@@ -34,7 +34,7 @@ open class KYTabBarItemLottieContentView: KYTabBarItemContentView {
         
         self.animationView = AnimationView(animation: self.animation)
 
-        if let animationView = self.animationView {
+        if self.animation != nil, let animationView = self.animationView {
             animationView.translatesAutoresizingMaskIntoConstraints = false
             animationView.contentMode = .scaleAspectFill
 
