@@ -25,6 +25,27 @@ open class KYTabBar: UITabBar {
         }
     }
     
+    private var containerBottomSpace: NSLayoutConstraint!
+    
+    var view: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    var basementStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.isUserInteractionEnabled = true
+        stackView.spacing = 12.0
+        
+        return stackView
+    }()
+    
     // MARK: - Appearance
     
     open var tabBarItemHeight: CGFloat = 48.0
@@ -68,7 +89,12 @@ open class KYTabBar: UITabBar {
         }
     }
     
-    // MARK: - Methods
+    // MARK: - Override Methods
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        self.subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }.forEach { $0.removeFromSuperview() }
+    }
     
     /*
      Change TabBar Height
@@ -90,38 +116,14 @@ open class KYTabBar: UITabBar {
         }
     }
     
-    var view: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
-        return view
-    }()
-    
-    private var containerBottomSpace: NSLayoutConstraint!
-    
     override open func safeAreaInsetsDidChange() {
         super.safeAreaInsetsDidChange()
         self.containerBottomSpace.constant = -self.safeAreaInsets.bottom
     }
     
-    private var minButtonWidth: CGFloat = 0
-    
-    var basementStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.isUserInteractionEnabled = true
-        stackView.spacing = 12.0
-        
-        return stackView
-    }()
+    // MARK: - Methods
     
     func removeAllContainers() {
-        //Remove all native tabBarButton
-        self.subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }.forEach { $0.removeFromSuperview() }
-        
         for container in self.containers {
             container.removeFromSuperview()
         }
@@ -159,7 +161,7 @@ open class KYTabBar: UITabBar {
         self.basementStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
-    private func reloadView() {
+    func reloadView() {
         if self.containerBottomSpace == nil {
             self.initialView()
         }
@@ -187,12 +189,12 @@ open class KYTabBar: UITabBar {
         self.layoutIfNeeded()
     }
     
-    func reload(_ animated: Bool) {
+    func reload(animated: Bool) {
         guard let itemsCount = self.items?.count else {
             fatalError("Reload view failed cause no items!")
         }
         
-        self.minButtonWidth = CGFloat(self.view.bounds.width) / CGFloat(itemsCount)
+        let minButtonWidth = CGFloat(self.view.bounds.width) / CGFloat(itemsCount)
         
         for item in self.items! {
             if let kyItem = item as? KYTabBarItem, let contentView = kyItem.contentView {
@@ -200,11 +202,11 @@ open class KYTabBar: UITabBar {
             }
         }
                 
-        var fitWidth: CGFloat = self.minButtonWidth
+        var fitWidth: CGFloat = minButtonWidth
         
         for item in self.items! {
             if let kyItem = item as? KYTabBarItem, let contentView = kyItem.contentView, contentView.selected {
-                fitWidth = max(contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width, self.minButtonWidth)
+                fitWidth = max(contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width, minButtonWidth)
                 break
             }
         }
@@ -290,7 +292,7 @@ open class KYTabBar: UITabBar {
                 kyItem.setSelected(selected: (idx == index), animated: animated)
             }
         }
-        self.reload(false)
+        self.reload(animated: false)
         
         self.delegate?.tabBar?(self, didSelect: item)
     }

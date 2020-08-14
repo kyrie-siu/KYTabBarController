@@ -56,12 +56,28 @@ open class KYTabBarController: UITabBarController {
             return tabBar
         }()
         self.setValue(tabBar, forKey: "tabBar")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationDidChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.updateTabBarSize()
+        
+        guard let tabBar = tabBar as? KYTabBar else {
+            return
+        }
+        tabBar.reloadView()
+        tabBar.reload(animated: false)
+    }
+
+    open override func viewSafeAreaInsetsDidChange() {
+        if #available(iOS 11.0, *) {
+            super.viewSafeAreaInsetsDidChange()
+        }
+        self.updateTabBarSize()
     }
 
     var tabBarHeight: CGFloat = 72
@@ -94,25 +110,6 @@ open class KYTabBarController: UITabBarController {
         if let tabBar = self.tabBar as? KYTabBar {
             tabBar.unselectedItemTintColor = color
         }
-    }
-
-    open override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.updateTabBarSize()
-    }
-
-    open override func viewSafeAreaInsetsDidChange() {
-        if #available(iOS 11.0, *) {
-            super.viewSafeAreaInsetsDidChange()
-        }
-        self.updateTabBarSize()
-    }
-    
-    @objc func deviceOrientationDidChanged() {
-        guard let tabBar = tabBar as? KYTabBar else {
-            return
-        }
-        tabBar.reload(true)
     }
 
     open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
