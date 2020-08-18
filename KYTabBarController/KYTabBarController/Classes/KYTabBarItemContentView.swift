@@ -178,16 +178,10 @@ open class KYTabBarItemContentView: UIView {
         } else {
             self.backgroundColor = self.selected ? self.selectedTintColor?.withAlphaComponent(0.2) : .clear
         }
-        
-        if self.selected {
-            self.titleLabel.textColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
-        } else {
-            self.titleLabel.textColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
-        }
-        
-        self.titleLabel.textColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
-        
+
         if !self.assetView.subviews.isEmpty {
+            self.titleLabel.textColor = self.selectedTintColor
+            
             if self.assetView.isHidden {
                 self.assetView.isHidden = false
             }
@@ -198,6 +192,8 @@ open class KYTabBarItemContentView: UIView {
                 if !self.titleLabel.isHidden { self.titleLabel.isHidden = true }
             }
         } else {
+            self.titleLabel.textColor = self.selected ? self.selectedTintColor : self.unselectedTintColor
+            
             if !self.assetView.isHidden { self.assetView.isHidden = true }
         }
         
