@@ -51,7 +51,8 @@ open class KYTabBar: UITabBar {
     open var tabBarItemHeight: CGFloat = 48.0
     open override var tintColor: UIColor! {
         didSet {
-            for item in self.items! {
+            guard let items = self.items else { return }
+            for item in items {
                 if let kyItem = item as? KYTabBarItem {
                     if kyItem.selectedTintColor == nil {
                         kyItem.selectedTintColor = tintColor
@@ -63,7 +64,8 @@ open class KYTabBar: UITabBar {
     
     open override var unselectedItemTintColor: UIColor! {
         didSet {
-            for item in self.items! {
+            guard let items = self.items else { return }
+            for item in items {
                 if let kyItem = item as? KYTabBarItem {
                     kyItem.unselectedTintColor = unselectedItemTintColor
                 }
@@ -75,7 +77,8 @@ open class KYTabBar: UITabBar {
     ///(tabBarItemHeight/2) by default
     var cornerRadius: CGFloat! = CGFloat.greatestFiniteMagnitude {
         didSet {
-            for item in self.items! {
+            guard let items = self.items else { return }
+            for item in items {
                 if let kyItem = item as? KYTabBarItem {
                     kyItem.contentView?.cornerRadius = cornerRadius
                 }
@@ -178,6 +181,7 @@ open class KYTabBar: UITabBar {
             if let item = item as? KYTabBarItem, let contentView = item.contentView {
                 container.addSubview(contentView)
                 
+                contentView.cornerRadius = 10.0
                 contentView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
                 contentView.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
                 contentView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
